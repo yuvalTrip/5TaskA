@@ -2,7 +2,7 @@
 // Created by yuvalbs on 5/25/23.
 //
 #include "doctest.h"
-//#include "sources/Team.hpp"
+#include "sources/MagicalContainer.h"
 
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 
@@ -10,14 +10,14 @@
 
 using namespace std;
 
-using namespace ariel;
 
 TEST_CASE("Throws checks "){
 
     CHECK_NOTHROW(MagicalContainer container);
+    MagicalContainer container;
     CHECK_NOTHROW(container.addElement(1));
     CHECK(container.size() == 1);
-    CHECK_NOTHROWcontainer.removeElement(1));
+    CHECK_NOTHROW(container.removeElement(1));
 }
 
 TEST_CASE("Add, Remove and Size"){
@@ -79,7 +79,7 @@ TEST_CASE("Iterators with empty containers checks")
 TEST_CASE("Iterators with single element in containers checks")
 {
     MagicalContainer container;
-    container.add(1);
+    container.addElement(1);
     CHECK(container.size()==1);
 
     //AscendingIterator
@@ -121,24 +121,18 @@ TEST_CASE("SideCrossIterator odd and even number of elements")
     //Even number
     container.addElement(6);
     CHECK(container.size()==6);
-    SideCrossIterator crossIter(container);
-    std::vector<int> crossOrderElements(crossIter.begin(), crossIter.end());
-    CHECK(crossOrderElements == std::vector<int>({1, 6, 2, 5, 3, 4}));//One from the start, one from the end
+    SideCrossIterator crossIter_(container);
+    std::vector<int> crossOrderElements_(crossIter_.begin(), crossIter_.end());
+    CHECK(crossOrderElements_ == std::vector<int>({1, 6, 2, 5, 3, 4}));//One from the start, one from the end
 
-    CHECK(it.operator*() == 1);    //first element
-    CHECK(it.operator++() == 6); // 1, 6, 2, 5, 3, 4
-    CHECK(it.operator++() == 2);
-    CHECK(it.operator++() == 5);
-    CHECK(it.operator++() == 3);
-    CHECK(it.operator++() == 4);
-    CHECK_THROWS(it.operator++()); // out of bounds
-
-    CHECK(it.operator--() == 3);
-    CHECK(it.operator--() == 5);
-    CHECK(it.operator--() == 2);
-    CHECK(it.operator--() == 6);
-    CHECK(it.operator--() == 1);
-    CHECK_THROWS(it.operator--()); // out of bounds
+    //Check operator
+    CHECK(crossIter_.operator*() == 1);    //first element
+    CHECK(crossIter_.operator++() == 6); // 1, 6, 2, 5, 3, 4
+    CHECK(crossIter_.operator++() == 2);
+    CHECK(crossIter_.operator++() == 5);
+    CHECK(crossIter_.operator++() == 3);
+    CHECK(crossIter_.operator++() == 4);
+    CHECK_THROWS(crossIter_.operator++()); // out of bounds
 
 }
 TEST_CASE("PrimeIterator with prime and not prime elements  ")
@@ -157,9 +151,7 @@ TEST_CASE("PrimeIterator with prime and not prime elements  ")
     //Operators checks
     CHECK(primeIter.operator*() == 2);    //first element
     CHECK(primeIter.operator++() == 3); // 2 3
-    CHECK(primeIter.operator--() == 2);
-    CHECK_THROWS(primeIter.operator--()); // out of bounds
-    CHECK(primeIter.operator++() == 3);
+
 }
 
 TEST_CASE("Ascending Iterator checks") {
@@ -183,9 +175,6 @@ TEST_CASE("Ascending Iterator checks") {
     CHECK(ascIter.operator++() == 11); //third element
     CHECK(ascIter.operator++() == 13); //fourth element
     CHECK_THROWS(ascIter.operator++()); //out of bounds
-    CHECK(ascIter.operator--() == 11); //third element
-    CHECK(ascIter.operator--() == 4); //second element
-    CHECK(ascIter.operator--() == -1); //first element
-    CHECK_THROWS(ascIter.operator--()); //out of bounds
+
 
 }

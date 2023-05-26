@@ -17,7 +17,8 @@ public:
     void addElement(int element);
     void removeElement(int element);
     int size() const;
-    const std::vector<int>& getElements() const;
+    const std::vector<int>& getElements() const;//return all elements( because it is private)
+    int contains(int number) const;//Check if container contain specific number
 
 //    std::vector<int>::iterator begin();
 //    std::vector<int>::iterator end();

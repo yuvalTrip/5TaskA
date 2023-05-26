@@ -31,6 +31,20 @@ void MagicalContainer::removeElement(int element) {
 int MagicalContainer::size() const {
     return elements.size();
 }
+
+const std::vector<int>& MagicalContainer::getElements() const
+{
+    return elements;
+}
+int MagicalContainer::contains(int number) const
+{
+    for (std::vector<int>::size_type i=0;i<elements.size();i++) {
+        if (elements[i]==number){return true;}
+    }
+    return false;
+}
+
+
 //
 //AscendingIterator MagicalContainer::begin() {
 //    return AscendingIterator(*this);

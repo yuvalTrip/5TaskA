@@ -3,10 +3,21 @@
 //
 
 #include "AscendingIterator.h"
+#include <iostream>
+
 AscendingIterator::AscendingIterator(const MagicalContainer& container)
 {
     std::vector<int> elements_asc= container.getElements();
+//    for (std::vector<int>::size_type i=0;i<elements_asc.size();i++) {
+//        std::cout << "elements_asc" << "[" << i << "]=" << elements_asc[i] << std::endl;
+//    }
     std::sort(elements_asc.begin(), elements_asc.end());
+//    std::cout << "After sort*****" <<std::endl;
+//
+//    for (std::vector<int>::size_type i=0;i<elements_asc.size();i++) {
+//        std::cout << "elements_asc" << "[" << i << "]=" << elements_asc[i] << std::endl;
+//    }
+    elements=elements_asc;
 }
 
 AscendingIterator& AscendingIterator::operator++() {
