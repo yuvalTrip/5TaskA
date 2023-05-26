@@ -16,12 +16,25 @@ private:
 public:
     //Constructor
     PrimeIterator(const MagicalContainer& container);
+    // Default constructor
+    PrimeIterator() : currentIndex(0), elements() {}
+    //Copy constructor
+    PrimeIterator::PrimeIterator(const PrimeIterator& other)
+            : currentIndex(other.currentIndex), elements(other.elements)
+    {
+        // Deep copy the vector
+        elements = other.elements;
+    }
+    //Destructor
+    ~PrimeIterator() = default;
 
     //Operators
-    PrimeIterator& operator++();
+    int operator++();
+    //    PrimeIterator& operator++();//I was not sure how to implement so I implemented 2 just in case
     int operator*() const;
     bool operator==(const PrimeIterator& other) const;
     bool operator!=(const PrimeIterator& other) const;
+    PrimeIterator operator=(const PrimeIterator &primeIter);
 
     //begin,end
     int * begin();

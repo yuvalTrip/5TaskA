@@ -134,6 +134,13 @@ TEST_CASE("SideCrossIterator odd and even number of elements")
     CHECK(crossIter_.operator++() == 4);
     CHECK_THROWS(crossIter_.operator++()); // out of bounds
 
+//    CHECK(crossIter_.operator--() == 3);
+//    CHECK(crossIter_.operator--() == 5);
+//    CHECK(crossIter_.operator--() == 2);
+//    CHECK(crossIter_.operator--() == 6);
+//    CHECK(crossIter_.operator--() == 1);
+//    CHECK_THROWS(crossIter_.operator--()); // out of bounds
+
 }
 TEST_CASE("PrimeIterator with prime and not prime elements  ")
 {
@@ -151,7 +158,9 @@ TEST_CASE("PrimeIterator with prime and not prime elements  ")
     //Operators checks
     CHECK(primeIter.operator*() == 2);    //first element
     CHECK(primeIter.operator++() == 3); // 2 3
-
+//    CHECK(primeIter.operator--() == 2);
+//    CHECK_THROWS(primeIter.operator--()); // out of bounds
+//    CHECK(primeIter.operator++() == 3);
 }
 
 TEST_CASE("Ascending Iterator checks") {
@@ -175,6 +184,9 @@ TEST_CASE("Ascending Iterator checks") {
     CHECK(ascIter.operator++() == 11); //third element
     CHECK(ascIter.operator++() == 13); //fourth element
     CHECK_THROWS(ascIter.operator++()); //out of bounds
-
+//    CHECK(ascIter.operator--() == 11); //third element
+//    CHECK(ascIter.operator--() == 4); //second element
+//    CHECK(ascIter.operator--() == -1); //first element
+//    CHECK_THROWS(ascIter.operator--()); //out of bounds
 
 }

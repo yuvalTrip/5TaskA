@@ -19,10 +19,16 @@ AscendingIterator::AscendingIterator(const MagicalContainer& container)
 //    }
     elements=elements_asc;
 }
-
-AscendingIterator& AscendingIterator::operator++() {
-    ++currentIndex;
-    return *this;
+//This is the "AscendingIterator& operator++();" implementation
+//AscendingIterator& AscendingIterator::operator++() {
+//    ++currentIndex;
+//    return *this;
+//}
+int AscendingIterator::operator++(){
+    if(currentIndex<elements.size() -1){
+        currentIndex++;
+    }
+    return elements[currentIndex];
 }
 
 int AscendingIterator::operator*() const {
@@ -55,4 +61,12 @@ int * AscendingIterator::begin() {
 
 int * AscendingIterator::end(){
     return &elements[elements.size()];
+}
+
+AscendingIterator AscendingIterator::operator=(const AscendingIterator &ascendingIterator){
+    //Assignment of the attrubutes
+    elements = ascendingIterator.elements;
+    currentIndex = ascendingIterator.currentIndex;
+//    AscendingIterator ascIter(container);
+    return *this;
 }

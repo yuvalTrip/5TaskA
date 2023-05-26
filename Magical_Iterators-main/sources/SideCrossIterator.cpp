@@ -26,12 +26,17 @@ SideCrossIterator::SideCrossIterator(const MagicalContainer& container)
     }
     elements=sideCrossArray;
 }
-
-SideCrossIterator& SideCrossIterator::operator++() {
-    ++currentIndex;
-    return *this;
+//This is the "SideCrossIterator& operator++();" implementation
+//SideCrossIterator& SideCrossIterator::operator++() {
+//    ++currentIndex;
+//    return *this;
+//}
+int SideCrossIterator::operator++(){
+    if(currentIndex<elements.size() -1){
+        currentIndex++;
+    }
+    return elements[currentIndex];
 }
-
 
 int SideCrossIterator::operator*() const {
     return elements[currentIndex];;
@@ -66,4 +71,13 @@ int * SideCrossIterator::begin() {
 
 int * SideCrossIterator::end(){
     return &elements[elements.size()];
+}
+
+
+SideCrossIterator SideCrossIterator::operator=(const SideCrossIterator &sideCIterator){
+    //Assignment of the attributes
+    elements = sideCIterator.elements;
+    currentIndex = sideCIterator.currentIndex;
+//    sideCIterator sideCIter(container);
+    return *this;
 }

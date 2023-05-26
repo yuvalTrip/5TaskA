@@ -15,12 +15,24 @@ private:
 public:
     //Constructor
     SideCrossIterator(const MagicalContainer& container);
-
+    // Default constructor
+    SideCrossIterator() : currentIndex(0), elements() {}
+    //Copy constructor
+    SideCrossIterator::SideCrossIterator(const SideCrossIterator& other)
+            : currentIndex(other.currentIndex), elements(other.elements)
+    {
+        // Deep copy the vector
+        elements = other.elements;
+    }
+    //Destructor
+    ~SideCrossIterator() = default;
     //Operators
-    SideCrossIterator& operator++();
+    int operator++();
+    //SideCrossIterator& operator++();//I was not sure how to implement so I implemented 2 just in case
     int operator*() const;
     bool operator==(const SideCrossIterator& other) const;
     bool operator!=(const SideCrossIterator& other) const;
+    SideCrossIterator operator=(const SideCrossIterator &sideCIter);
 
     //begin,end
     int * begin();

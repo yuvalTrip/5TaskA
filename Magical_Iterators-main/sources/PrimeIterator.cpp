@@ -60,16 +60,30 @@ bool PrimeIterator::operator!=(const PrimeIterator& other) const {
 int PrimeIterator::operator*() const {
     return elements[currentIndex];;
 }
-
-PrimeIterator& PrimeIterator::operator++() {
-    ++currentIndex;
-    return *this;
+//This is the "PrimeIterator& operator++();" implementation
+//PrimeIterator& PrimeIterator::operator++() {
+//    ++currentIndex;
+//    return *this;
+//}
+int PrimeIterator::operator++(){
+    if(currentIndex<elements.size() -1){
+        currentIndex++;
+    }
+    return elements[currentIndex];
 }
-
 int * PrimeIterator::begin() {
     return &elements[0];
 }
 
 int * PrimeIterator::end(){
     return &elements[elements.size()];
+}
+
+
+PrimeIterator PrimeIterator::operator=(const PrimeIterator &primeIterator){
+    //Assignment of the attrubutes
+    elements = primeIterator.elements;
+    currentIndex = primeIterator.currentIndex;
+//    PrimeIterator primeIter(container);
+    return *this;
 }
