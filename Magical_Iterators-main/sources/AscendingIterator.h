@@ -4,33 +4,24 @@
 
 #ifndef INC_5TASKA_ASCENDINGITERATOR_H
 #define INC_5TASKA_ASCENDINGITERATOR_H
-
+#include <stdio.h>
+//using namespace std;
 
 class AscendingIterator {
 
 
 private:
     const MagicalContainer& container;
-    std::vector<int>::const_iterator current;
+    std::vector<int>::const_iterator elements;
 
 public:
     AscendingIterator(const MagicalContainer& cont, bool end = false): container(cont) {}
 
-    AscendingIterator(const AscendingIterator& other): container(other.container), current(other.current) {}
+    AscendingIterator(const MagicalContainer& container);
 
-    AscendingIterator& operator=(const AscendingIterator& other) {}
+    AscendingIterator begin() const ;
 
-    bool operator==(const AscendingIterator& other) const {}
-
-    bool operator!=(const AscendingIterator& other) const {}
-
-    int operator*() const {}
-
-    AscendingIterator& operator++() {}
-
-    AscendingIterator begin() const {}
-
-    AscendingIterator end() const {}
+    AscendingIterator end() const;
 
 
 };
