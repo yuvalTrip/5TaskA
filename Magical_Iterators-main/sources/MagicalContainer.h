@@ -15,12 +15,12 @@ private:
     std::vector<int> elements;
 public:
     void addElement(int element);
-
     void removeElement(int element);
-
     int size() const;
     const std::vector<int>& getElements() const;
 
+    std::vector<int>::iterator begin();
+    std::vector<int>::iterator end();
 
 
 };
