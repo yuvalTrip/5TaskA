@@ -4,34 +4,28 @@
 
 #ifndef INC_5TASKA_SIDECROSSITERATOR_H
 #define INC_5TASKA_SIDECROSSITERATOR_H
+#include "MagicalContainer.h"
 
 
 class SideCrossIterator {
 private:
-    const MagicalContainer& container;
-    std::vector<int>::const_iterator forwardIterator;
-    std::vector<int>::const_iterator backwardIterator;
-    bool isForward;
+    std::vector<int> elements;// Store sorted elements
+    std::vector<int>::size_type currentIndex; // Track the current index
 
 public:
-    SideCrossIterator(const MagicalContainer& cont, bool end = false): container(cont), isForward(true) {}
+    //Constructor
+    SideCrossIterator(const MagicalContainer& container);
 
-    SideCrossIterator(const SideCrossIterator& other): container(other.container), forwardIterator(other.forwardIterator),
-              backwardIterator(other.backwardIterator), isForward(other.isForward) {}
+    //Operators
+    SideCrossIterator& operator++();
+    int operator*() const;
+    bool operator==(const AscendingIterator& other) const;
+    bool operator!=(const AscendingIterator& other) const;
 
-    SideCrossIterator& operator=(const SideCrossIterator& other);
+    //begin,end
+    static SideCrossIterator begin(const MagicalContainer& container);
+    static SideCrossIterator end(const MagicalContainer& container);
 
-    bool operator==(const SideCrossIterator& other) const ;
-
-    bool operator!=(const SideCrossIterator& other) const ;
-
-    int operator*() const ;
-
-    SideCrossIterator& operator++() ;
-
-    SideCrossIterator begin() const;
-
-    SideCrossIterator end() const;
 
 };
 

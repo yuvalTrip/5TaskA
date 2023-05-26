@@ -3,20 +3,29 @@
 //
 
 #include "SideCrossIterator.h"
-SideCrossIterator(const MagicalContainer& cont, bool end = false)
-        : container(cont), isForward(true) {
-    if (end) {
-        forwardIterator = container.elements.end();
-        backwardIterator = container.elements.begin();
-    } else {
-        forwardIterator = container.elements.begin();
-        backwardIterator = container.elements.end() - 1;
-    }
-}
 
-SideCrossIterator(const SideCrossIterator& other)
-        : container(other.container), forwardIterator(other.forwardIterator),
-          backwardIterator(other.backwardIterator), isForward(other.isForward) {}
+SideCrossIterator::SideCrossIterator(const MagicalContainer& container)
+{
+    std::vector<int> elements_asc= container.getElements();
+    //First I will sort it
+    std::sort(elements_asc.begin(), elements_asc.end());
+    //After the sort I will start to take onr index from the start and other from the end
+    std::vector<int> sideCrossArray;
+
+    std::vector<int>::size_type left = 0;                            // Left pointer starting from the beginning
+    std::vector<int>::size_type  right = elements_asc.size() - 1;      // Right pointer starting from the end
+
+    // Perform side cross operation
+    while (left <= right) {
+        sideCrossArray.push_back(elements_asc[left]);
+        if (left != right) {
+            sideCrossArray.push_back(elements_asc[right]);
+        }
+        left++;
+        right--;
+    }
+    elements=sideCrossArray;
+}
 
 SideCrossIterator& SideCrossIterator::operator=(const SideCrossIterator& other) {
     if (this != &other) {

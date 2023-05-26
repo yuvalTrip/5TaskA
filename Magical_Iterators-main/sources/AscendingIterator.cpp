@@ -3,7 +3,6 @@
 //
 
 #include "AscendingIterator.h"
-//#include "MagicalContainer.h"
 AscendingIterator::AscendingIterator(const MagicalContainer& container)
 {
     std::vector<int> elements_asc= container.getElements();

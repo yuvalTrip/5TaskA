@@ -27,8 +27,7 @@
 
 class AscendingIterator {
 private:
-    std::vector<int> elements;
-//    int currentIndex =0;
+    std::vector<int> elements;// Store sorted elements
     std::vector<int>::size_type currentIndex; // Track the current index
 public:
     //Constructor
