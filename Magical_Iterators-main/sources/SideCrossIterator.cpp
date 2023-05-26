@@ -9,7 +9,7 @@ SideCrossIterator::SideCrossIterator(const MagicalContainer& container)
     std::vector<int> elements_asc= container.getElements();
     //First I will sort it
     std::sort(elements_asc.begin(), elements_asc.end());
-    //After the sort I will start to take onr index from the start and other from the end
+    //After the sort I will start to take one index from the start and other from the end
     std::vector<int> sideCrossArray;
 
     std::vector<int>::size_type left = 0;                            // Left pointer starting from the beginning
@@ -27,54 +27,43 @@ SideCrossIterator::SideCrossIterator(const MagicalContainer& container)
     elements=sideCrossArray;
 }
 
-SideCrossIterator& SideCrossIterator::operator=(const SideCrossIterator& other) {
-    if (this != &other) {
-        container = other.container;
-        forwardIterator = other.forwardIterator;
-        backwardIterator = other.backwardIterator;
-        isForward = other.isForward;
-    }
+SideCrossIterator& SideCrossIterator::operator++() {
+    ++currentIndex;
     return *this;
 }
 
+
+int SideCrossIterator::operator*() const {
+    return elements[currentIndex];;
+}
+
 bool SideCrossIterator::operator==(const SideCrossIterator& other) const {
-    return forwardIterator == other.forwardIterator &&
-           backwardIterator == other.backwardIterator &&
-           isForward == other.isForward;
+
+        if (elements.size()!=other.elements.size())//if 2 vectors have different size, of course they are not the same
+        {
+            return false;
+        }
+        else{//If they do have the same size, we will check their values
+            for (std::vector<int>::size_type i=0;i<elements.size();i++)
+            {
+                if (static_cast<std::vector<int>::size_type>(elements[i])==other.elements[i])//if it equal
+                    //            if (static_cast<std::vector<int>::size_type>(elements[i]) == other.elements[i]) {
+                { continue;}//we will continue to check the next element
+                else{ return false;}//if not, return false
+            }
+        }
+        return true;//if we finished the for and all elements are equal, return true
 }
 
 bool SideCrossIterator::operator!=(const SideCrossIterator& other) const {
     return !(*this == other);
 }
 
-int SideCrossIterator::operator*() const {
-    if (isForward)
-        return *forwardIterator;
-    else
-        return *backwardIterator;
+
+int * SideCrossIterator::begin() {
+    return &elements[0];
 }
 
-SideCrossIterator& SideCrossIterator::operator++() {
-    if (isForward) {
-        ++forwardIterator;
-        if (forwardIterator == backwardIterator) {
-            isForward = false;
-            ++backwardIterator;
-        }
-    } else {
-        --backwardIterator;
-        if (backwardIterator == forwardIterator) {
-            isForward = true;
-            ++forwardIterator;
-        }
-    }
-    return *this;
-}
-
-SideCrossIterator SideCrossIterator::begin() const {
-    return SideCrossIterator(container);
-}
-
-SideCrossIterator SideCrossIterator::end() const {
-    return SideCrossIterator(container, true);
+int * SideCrossIterator::end(){
+    return &elements[elements.size()];
 }

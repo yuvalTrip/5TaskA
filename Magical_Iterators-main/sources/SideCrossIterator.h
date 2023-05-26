@@ -19,12 +19,12 @@ public:
     //Operators
     SideCrossIterator& operator++();
     int operator*() const;
-    bool operator==(const AscendingIterator& other) const;
-    bool operator!=(const AscendingIterator& other) const;
+    bool operator==(const SideCrossIterator& other) const;
+    bool operator!=(const SideCrossIterator& other) const;
 
     //begin,end
-    static SideCrossIterator begin(const MagicalContainer& container);
-    static SideCrossIterator end(const MagicalContainer& container);
+    int * begin();
+    int * end();
 
 
 };

@@ -31,28 +31,28 @@ void MagicalContainer::removeElement(int element) {
 int MagicalContainer::size() const {
     return elements.size();
 }
-
-AscendingIterator MagicalContainer::begin() {
-    return AscendingIterator(*this);
-}
-
-AscendingIterator MagicalContainer::end() {
-    return AscendingIterator(*this);
-}
-
-SideCrossIterator MagicalContainer::begin() {
-    return SideCrossIterator(*this);
-}
-
-SideCrossIterator MagicalContainer::end() {
-    return SideCrossIterator(*this,);
-}
-
-PrimeIterator MagicalContainer::begin() {
-    return PrimeIterator(*this);
-}
-
-PrimeIterator MagicalContainer::end() {
-    return PrimeIterator(*this);
-}
+//
+//AscendingIterator MagicalContainer::begin() {
+//    return AscendingIterator(*this);
+//}
+//
+//AscendingIterator MagicalContainer::end() {
+//    return AscendingIterator(*this);
+//}
+//
+//SideCrossIterator MagicalContainer::begin() {
+//    return SideCrossIterator(*this);
+//}
+//
+//SideCrossIterator MagicalContainer::end() {
+//    return SideCrossIterator(*this,);
+//}
+//
+//PrimeIterator MagicalContainer::begin() {
+//    return PrimeIterator(*this);
+//}
+//
+//PrimeIterator MagicalContainer::end() {
+//    return PrimeIterator(*this);
+//}
 

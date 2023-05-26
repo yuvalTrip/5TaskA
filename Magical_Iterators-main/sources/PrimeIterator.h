@@ -4,33 +4,30 @@
 
 #ifndef INC_5TASKA_PRIMEITERATOR_H
 #define INC_5TASKA_PRIMEITERATOR_H
+#include "MagicalContainer.h"
 
 
 class PrimeIterator {
 private:
-    const MagicalContainer& container;
-    std::vector<int>::const_iterator current;
-
+    std::vector<int> elements;// Store sorted elements
+    std::vector<int>::size_type currentIndex; // Track the current index
     bool isPrime(int num);
 
 public:
-    PrimeIterator(const MagicalContainer& cont, bool end = false): container(cont) {}
+    //Constructor
+    PrimeIterator(const MagicalContainer& container);
 
-    PrimeIterator(const PrimeIterator& other): container(other.container), current(other.current) {}
-
-    PrimeIterator& operator=(const PrimeIterator& other);
-
+    //Operators
+    PrimeIterator& operator++();
+    int operator*() const;
     bool operator==(const PrimeIterator& other) const;
-
     bool operator!=(const PrimeIterator& other) const;
 
-    int operator*() const;
+    //begin,end
+    int * begin();
+    int * end();
 
-    PrimeIterator& operator++();
 
-    PrimeIterator begin() const;
-
-    PrimeIterator end() const;
 };
 
 

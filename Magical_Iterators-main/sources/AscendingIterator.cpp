@@ -38,11 +38,10 @@ bool AscendingIterator::operator==(const AscendingIterator& other) const {
 bool AscendingIterator::operator!=(const AscendingIterator& other) const {
     return !(*this == other);
 }
-
-AscendingIterator AscendingIterator::begin(const MagicalContainer& container) {
-    return AscendingIterator(container);
+int * AscendingIterator::begin() {
+    return &elements[0];
 }
 
-AscendingIterator AscendingIterator::end(const MagicalContainer& container) {
-    return AscendingIterator(container);
+int * AscendingIterator::end(){
+    return &elements[elements.size()];
 }

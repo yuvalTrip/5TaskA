@@ -40,8 +40,9 @@ public:
     bool operator!=(const AscendingIterator& other) const;
 
     //begin,end
-    static AscendingIterator begin(const MagicalContainer& container);
-    static AscendingIterator end(const MagicalContainer& container);
+    int * begin();
+    int * end();
+
 
 };
 
