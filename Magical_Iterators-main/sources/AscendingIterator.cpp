@@ -16,7 +16,7 @@ AscendingIterator& AscendingIterator::operator++() {
 }
 
 int AscendingIterator::operator*() const {
-    return *elements;
+    return elements[currentIndex];;
 }
 
 bool AscendingIterator::operator==(const AscendingIterator& other) const {
@@ -25,9 +25,10 @@ bool AscendingIterator::operator==(const AscendingIterator& other) const {
         return false;
     }
     else{//If they do have the same size, we will check their values
-        for (int i=0;i<elements.size();i++)
+        for (std::vector<int>::size_type i=0;i<elements.size();i++)
         {
-            if (elements[i]==other.elements[i])//if it equal
+            if (static_cast<std::vector<int>::size_type>(elements[i])==other.elements[i])//if it equal
+                //            if (static_cast<std::vector<int>::size_type>(elements[i]) == other.elements[i]) {
             { continue;}//we will continue to check the next element
             else{ return false;}//if not, return false
         }
