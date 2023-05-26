@@ -17,7 +17,7 @@ public:
     void removeElement(int element) {
     }
 
-    int getSize() const {
+    int size() const {
     }
 
 

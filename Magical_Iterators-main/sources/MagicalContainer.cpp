@@ -11,6 +11,6 @@ void MagicalContainer::removeElement(int element) {
     elements.erase(std::remove(elements.begin(), elements.end(), element), elements.end());
 }
 
-int MagicalContainer::getSize() const {
+int MagicalContainer::size() const {
     return elements.size();
 }
