@@ -19,7 +19,7 @@ public:
     // Default constructor
     PrimeIterator() : currentIndex(0), elements() {}
     //Copy constructor
-    PrimeIterator::PrimeIterator(const PrimeIterator& other)
+    PrimeIterator(const PrimeIterator& other)
             : currentIndex(other.currentIndex), elements(other.elements)
     {
         // Deep copy the vector

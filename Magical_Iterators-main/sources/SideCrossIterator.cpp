@@ -3,28 +3,43 @@
 //
 
 #include "SideCrossIterator.h"
+#include <iostream>
 
 SideCrossIterator::SideCrossIterator(const MagicalContainer& container)
 {
     std::vector<int> elements_asc= container.getElements();
-    //First I will sort it
-    std::sort(elements_asc.begin(), elements_asc.end());
-    //After the sort I will start to take one index from the start and other from the end
-    std::vector<int> sideCrossArray;
+    int size_elements=elements_asc.size();
+    std::cout<<"elements_asc.size: "<<elements_asc.size()<<std::endl;
 
-    std::vector<int>::size_type left = 0;                            // Left pointer starting from the beginning
-    std::vector<int>::size_type  right = elements_asc.size() - 1;      // Right pointer starting from the end
+    if (elements_asc.size()>0) {
+        std::cout<<"elements_asc.size>0: "<<elements_asc.size()<<std::endl;
 
-    // Perform side cross operation
-    while (left <= right) {
-        sideCrossArray.push_back(elements_asc[left]);
-        if (left != right) {
-            sideCrossArray.push_back(elements_asc[right]);
+
+        //First I will sort it
+        std::sort(elements_asc.begin(), elements_asc.end());
+        //After the sort I will start to take one index from the start and other from the end
+        std::vector<int> sideCrossArray;
+//
+        std::vector<int>::size_type left = 0;                            // Left pointer starting from the beginning
+        std::vector<int>::size_type right = elements_asc.size() - 1;      // Right pointer starting from the end
+        std::cout << "right: " << right << std::endl;
+        // Perform side cross operation
+        while (left <= right) {
+            std::cout << "left: " << left << std::endl;
+            std::cout << "right: " << right << std::endl;
+
+            sideCrossArray.push_back(elements_asc[left]);
+            if (left != right) {
+                sideCrossArray.push_back(elements_asc[right]);
+            }
+            left++;
+            right--;
         }
-        left++;
-        right--;
+        elements=sideCrossArray;
+
     }
-    elements=sideCrossArray;
+    elements={};
+
 }
 //This is the "SideCrossIterator& operator++();" implementation
 //SideCrossIterator& SideCrossIterator::operator++() {

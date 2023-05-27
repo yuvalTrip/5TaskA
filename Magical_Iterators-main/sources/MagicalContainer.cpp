@@ -3,6 +3,8 @@
 //
 
 #include "MagicalContainer.h"
+#include <iostream>
+
 //void MagicalContainer::addElement(int element) {
 //    elements.push_back(element);
 //}
@@ -20,12 +22,7 @@ void MagicalContainer::addElement(int element) {
 }
 
 void MagicalContainer::removeElement(int element) {
-    for (auto it = elements.begin(); it != elements.end(); ++it) {
-        if (*it == element) {
-            elements.erase(it);
-            break;
-        }
-    }
+    elements.erase(remove(elements.begin(), elements.end(), element), elements.end());
 }
 
 int MagicalContainer::size() const {

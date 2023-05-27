@@ -35,7 +35,7 @@ public:
     // Default constructor
     AscendingIterator() : currentIndex(0), elements() {}
     //Copy constructor
-    AscendingIterator::AscendingIterator(const AscendingIterator& other)
+    AscendingIterator(const AscendingIterator& other)
             : currentIndex(other.currentIndex), elements(other.elements)
     {
         // Deep copy the vector
