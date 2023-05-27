@@ -20,18 +20,22 @@ PrimeIterator::PrimeIterator(const MagicalContainer& container) {
     std::vector<int> elements_asc= container.getElements();
     //First I will sort it
     std::sort(elements_asc.begin(), elements_asc.end());
+
     //After the sort I will start to take only elements that are prime numbers
     std::vector<int> PrimesArray;
     //Define index
-    std::vector<int>::size_type prime_ind = 0;                            // Left pointer starting from the beginning
+//    std::vector<int>::size_type prime_ind = 0;                            // Left pointer starting from the beginning
 
     for ( std::vector<int>::size_type i=0;i<elements_asc.size();i++)
     {
+//        std::cout<<"i: "<<i<<std::endl;
         if (isPrime(elements_asc[i])==true){
-            PrimesArray[prime_ind]=elements_asc[i];
-            prime_ind++;
+//            std::cout<<"prime_ind: "<<prime_ind<<std::endl;
+
+            PrimesArray.push_back(elements_asc[i]);
         }
     }
+
     elements=PrimesArray;
 }
 
@@ -58,6 +62,8 @@ bool PrimeIterator::operator!=(const PrimeIterator& other) const {
 }
 
 int PrimeIterator::operator*() const {
+//    std::cout << "currentIndex: "<< currentIndex <<std::endl;
+
     return elements[currentIndex];;
 }
 //This is the "PrimeIterator& operator++();" implementation
@@ -66,17 +72,33 @@ int PrimeIterator::operator*() const {
 //    return *this;
 //}
 int PrimeIterator::operator++(){
+    if (currentIndex+1>elements.size()-1)
+    {
+        throw std::invalid_argument("Out of bounds!");
+    }
     if(currentIndex<elements.size() -1){
         currentIndex++;
     }
     return elements[currentIndex];
 }
 int * PrimeIterator::begin() {
-    return &elements[0];
+    if (elements.size()==0) {
+        return NULL;
+    }else
+    {
+        return &elements[0];
+
+    }
 }
 
 int * PrimeIterator::end(){
-    return &elements[elements.size()];
+    if (elements.size()==0) {
+        return NULL;
+    }
+    else{
+        return &elements[elements.size()-1];
+
+    }
 }
 
 

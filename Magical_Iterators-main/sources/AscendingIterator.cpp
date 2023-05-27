@@ -25,6 +25,10 @@ AscendingIterator::AscendingIterator(const MagicalContainer& container)
 //    return *this;
 //}
 int AscendingIterator::operator++(){
+    if (currentIndex+1>elements.size()-1)
+    {
+        throw std::invalid_argument("Out of bounds!");
+    }
     if(currentIndex<elements.size() -1){
         currentIndex++;
     }
@@ -56,11 +60,23 @@ bool AscendingIterator::operator!=(const AscendingIterator& other) const {
     return !(*this == other);
 }
 int * AscendingIterator::begin() {
-    return &elements[0];
+    if (elements.size()==0) {
+        return NULL;
+    }
+    else{
+        return &elements[0];
+    }
 }
 
 int * AscendingIterator::end(){
-    return &elements[elements.size()];
+    if (elements.size()==0) {
+        return NULL;
+    }else
+    {
+        return &elements[elements.size()-1];
+
+    }
+
 }
 
 AscendingIterator AscendingIterator::operator=(const AscendingIterator &ascendingIterator){

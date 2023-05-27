@@ -10,7 +10,7 @@
 class SideCrossIterator {
 private:
     std::vector<int> elements;// Store sorted elements
-    std::vector<int>::size_type currentIndex; // Track the current index
+    std::vector<int>::size_type currentIndex=0; // Track the current index
 
 public:
     //Constructor
@@ -26,6 +26,9 @@ public:
     }
     //Destructor
     ~SideCrossIterator() = default;
+    // Method for side cross order
+    std::vector<int> getSideCrossElements() ;
+
     //Operators
     int operator++();
     //SideCrossIterator& operator++();//I was not sure how to implement so I implemented 2 just in case

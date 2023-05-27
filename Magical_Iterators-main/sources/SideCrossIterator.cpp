@@ -7,39 +7,50 @@
 
 SideCrossIterator::SideCrossIterator(const MagicalContainer& container)
 {
-    std::vector<int> elements_asc= container.getElements();
-    int size_elements=elements_asc.size();
-    std::cout<<"elements_asc.size: "<<elements_asc.size()<<std::endl;
+    std::vector<int> elements_asc= container.getElements();//get all numbers from container
+//    int size_elements=elements_asc.size();
+//    std::cout<<"elements_asc.size: "<<elements_asc.size()<<std::endl;
 
     if (elements_asc.size()>0) {
-        std::cout<<"elements_asc.size>0: "<<elements_asc.size()<<std::endl;
-
-
+//        std::cout<<"elements_asc.size>0: "<<elements_asc.size()<<std::endl;
         //First I will sort it
         std::sort(elements_asc.begin(), elements_asc.end());
         //After the sort I will start to take one index from the start and other from the end
         std::vector<int> sideCrossArray;
-//
+////
         std::vector<int>::size_type left = 0;                            // Left pointer starting from the beginning
         std::vector<int>::size_type right = elements_asc.size() - 1;      // Right pointer starting from the end
-        std::cout << "right: " << right << std::endl;
+       //std::cout << "right: " << right << std::endl;
         // Perform side cross operation
         while (left <= right) {
-            std::cout << "left: " << left << std::endl;
-            std::cout << "right: " << right << std::endl;
+            std::cout << "left: " << left << " value="<<elements_asc[left]<<std::endl;
+
 
             sideCrossArray.push_back(elements_asc[left]);
+
             if (left != right) {
                 sideCrossArray.push_back(elements_asc[right]);
+                std::cout << "right: " << right << " value="<<elements_asc[right]<<std::endl;
+                right--;
             }
             left++;
-            right--;
+
         }
         elements=sideCrossArray;
 
+    } else {
+        elements = {};
     }
-    elements={};
+    std::cout << "currentIndex-builder: "<< currentIndex <<std::endl;
 
+}
+
+std::vector<int> SideCrossIterator::getSideCrossElements()  {
+    std::vector<int> sideCrossElements;
+    for (int * it = begin(); it != end(); ++it) {
+        sideCrossElements.push_back(*it);
+    }
+    return sideCrossElements;
 }
 //This is the "SideCrossIterator& operator++();" implementation
 //SideCrossIterator& SideCrossIterator::operator++() {
@@ -47,6 +58,10 @@ SideCrossIterator::SideCrossIterator(const MagicalContainer& container)
 //    return *this;
 //}
 int SideCrossIterator::operator++(){
+    if (currentIndex+1>elements.size()-1)
+    {
+        throw std::invalid_argument("Out of bounds!");
+    }
     if(currentIndex<elements.size() -1){
         currentIndex++;
     }
@@ -54,6 +69,7 @@ int SideCrossIterator::operator++(){
 }
 
 int SideCrossIterator::operator*() const {
+//    std::cout << "currentIndex: "<< currentIndex <<std::endl;
     return elements[currentIndex];;
 }
 
@@ -81,11 +97,22 @@ bool SideCrossIterator::operator!=(const SideCrossIterator& other) const {
 
 
 int * SideCrossIterator::begin() {
-    return &elements[0];
+    if (elements.size()==0) {
+//        std::cout<<"NULL;: "<<std::endl;
+        return NULL;
+    }else{
+//        std::cout<<"elements[0];: "<<elements[0]<<std::endl;
+        return &elements[0];
+    }
 }
 
 int * SideCrossIterator::end(){
-    return &elements[elements.size()];
+    if (elements.size()==0) {
+        return NULL;
+    }
+    else{
+        return &elements[elements.size()-1];
+    }
 }
 
 

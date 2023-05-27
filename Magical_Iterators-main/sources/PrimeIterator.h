@@ -10,7 +10,7 @@
 class PrimeIterator {
 private:
     std::vector<int> elements;// Store sorted elements
-    std::vector<int>::size_type currentIndex; // Track the current index
+    std::vector<int>::size_type currentIndex=0; // Track the current index
     bool isPrime(int num);
 
 public:
