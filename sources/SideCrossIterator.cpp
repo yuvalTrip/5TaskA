@@ -23,14 +23,14 @@ SideCrossIterator::SideCrossIterator(const MagicalContainer& container)
        //std::cout << "right: " << right << std::endl;
         // Perform side cross operation
         while (left <= right) {
-            std::cout << "left: " << left << " value="<<elements_asc[left]<<std::endl;
+     //       std::cout << "left: " << left << " value="<<elements_asc[left]<<std::endl;
 
 
             sideCrossArray.push_back(elements_asc[left]);
 
             if (left != right) {
                 sideCrossArray.push_back(elements_asc[right]);
-                std::cout << "right: " << right << " value="<<elements_asc[right]<<std::endl;
+      //          std::cout << "right: " << right << " value="<<elements_asc[right]<<std::endl;
                 right--;
             }
             left++;
@@ -41,7 +41,7 @@ SideCrossIterator::SideCrossIterator(const MagicalContainer& container)
     } else {
         elements = {};
     }
-    std::cout << "currentIndex-builder: "<< currentIndex <<std::endl;
+ //   std::cout << "currentIndex-builder: "<< currentIndex <<std::endl;
 
 }
 
